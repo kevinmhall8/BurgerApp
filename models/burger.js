@@ -6,13 +6,13 @@ selectAll: function(cb) {
         cb(res);
     })
 },
-insertOne: function(objColVals, condition,cb){
-    orm.insertOne("burgers", objColVals, condition, function(res){
+insertOne: function(cols, vals, cb){
+    orm.insertOne("burgers", cols, vals, function(res){
         cb(res);
     })
 },
 updateOne: function(objColVals, condition, cb){
-    orm.updateOne("burgers", condition, function(res){
+    orm.updateOne("burgers", objColVals, condition, function(res){
         cb(res);
     })
 }
