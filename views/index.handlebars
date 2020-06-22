@@ -1,39 +1,59 @@
-<div class="hero is-dark has-text-centered">
-    <h1>Eat-Da-Burger</h1>
-    <p>Make and Eat burgers!</p>
+<div class="container">
+<section class="hero is-danger is-centered">
+  <div class="hero-body">
+    <div class="container is-centered">
+      <h1 class="title is-centered">
+        Eat-Da-Burger
+      </h1>
+    <p> Enter single burger, double burger, or triple burger</p>
     </div>
-<div class="columns">
-<div class="column">
-<p class = "is-size-4 has-text-centered"><u>Burgers not Devoured</u></p>
-
-<ul>
-    {{#each burgers}}
-    {{#unless devoured}}
-    <li>
-        {{burger_name}}
-
-        <button class="devour-button " data-id="{{id}}" data-newdevour="true">
-            Devour!
-        </button>
-    </li>
-    {{/unless}}
-    {{/each}}
-</ul>
-</div>
+  </div>
+</section>
+<section>
     <div class="column">
-
-    <p class="is-size-4 has-text-centered"><u>Burgers Devoured</u></p>
-
+        <form action="/api/burgers" method="POST">
+            <input type="text" name="burger_name">
+            <button type="submit">Make Burger</button>
+        </form>
+         </div>
+</section>
+    <div class="columns">
+        <div class="column is-warning">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="left-column"><strong>Burgers Not Devoured</strong>
+                </div>
+                <div class="panel-body">
                     <ul>
                         {{#each burgers}}
                         {{#unless devoured}}
-
                         <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
-                        <button type="button" class="devour-button" id="eatbutton" data-id="{{this.id}}"
-                            data-newDevoured="{{devour}}"><span class="fa fa-usd"></span></button>
+                        <button type="button" class="eatburger button is-success" id="eatbutton" data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}">Eat!</button>
                         <hr>
                         {{/unless}}
                         {{/each}}
                     </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column is-danger">
+            <div class="panel">
+                <div class="panel-heading" id="right-column"><strong>Burgers Devoured</strong>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        {{#each burgers}}
+                        {{#if devoured}}
+                        <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
+                        <button type="button" class="trashburger button is-danger" id="trashbutton" data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}">Delete!</button>
+                        <hr>
+                        {{/if}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

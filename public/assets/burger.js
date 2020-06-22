@@ -27,7 +27,7 @@ $(function () {
         );
     });
 
-    $(".devour-button").on("click", function (event) {
+    $(".eatburger").on("click", function (event) {
         var id = $(this).data("id");
         var devouredState = {
             devoured: 1
@@ -37,7 +37,7 @@ $(function () {
             data: devouredState
         }).then(function () {
             console.log("Burger Devoured!")
-            location.reload
+            location.reload();
         })
     });
 });

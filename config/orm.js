@@ -33,6 +33,8 @@ var orm = {
         });
     },
     insertOne: function(table, cols, vals, cb) {
+        console.log(cols);
+        console.log(vals);
         var dbQuery = "INSERT INTO " + table;
         dbQuery += " (";
         dbQuery += cols.toString();
@@ -43,7 +45,7 @@ var orm = {
 
         console.log(dbQuery);
 
-        connection.query(queryString, vals, function(err, res) {
+        connection.query(dbQuery, vals, function(err, res) {
             if (err) {
                 throw err;
             }

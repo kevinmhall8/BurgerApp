@@ -16,15 +16,17 @@ router.get("/", function(req, res) {
       burger.insertOne([
         "burger_name", "devoured"
       ], [
-        req.body.burger_name, req.body.devoured
+        req.body.burger_name, false
       ], function(result) {
-        res.json({ id: result.insertId });
+        res.redirect("/");
       });
     });
     
     router.put("/api/burgers/:id", function(req, res){
       var condition = "id = " + req.params.id;
       console.log("condition", condition);
+      console.log("body", req.body)
+      console.log("body", req.body.devoured)
       burger.updateOne( { devoured: req.body.devoured }, condition, function(
         result
         ){
